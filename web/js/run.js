@@ -1,5 +1,7 @@
 log('started');
 
+userDetailsAction('rmason');
+
 window.addEventListener("load", function(event) {
 	
 	// routing
@@ -8,7 +10,7 @@ window.addEventListener("load", function(event) {
 	switch(route) {
 		default:
 			log('default route loading..');
-			loadStoriesAction();
+			//loadStoriesAction();
 	}
 
 });

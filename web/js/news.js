@@ -3,6 +3,7 @@ let App = {
 	BASEURL: 'https://hacker-news.firebaseio.com/v0',
 	NEWSTORIES: '/newstories.json',
 	STORYITEM: '/item/{0}.json',
+	USERDETAILS: '/user/{0}.json',
 	SHOW_PER_PAGE: 30,
 	stories: [],
 	storyRequests: [] // tmp for Promises.all
@@ -103,3 +104,18 @@ function loadStoriesAction()
 		})
 	});
 }
+
+// 
+//
+//
+function userDetailsAction(username) 
+{
+	axios.get((App.BASEURL + App.USERDETAILS).format(username))
+	.then(function(response) {
+		log(response.data);
+	})
+	.catch(function(error) {
+		log(error);
+	})
+}
+
