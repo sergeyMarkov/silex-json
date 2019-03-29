@@ -14,6 +14,11 @@ $app->get('/', function () use ($app) {
 ->bind('homepage')
 ;
 
+$app->get('/user/{id}', function(Request $request) use ($app) {
+	return $app['twig']->render('user_details.html.twig', array());
+})
+->bind('user_details');
+
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

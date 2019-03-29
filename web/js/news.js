@@ -112,10 +112,25 @@ function userDetailsAction(username)
 {
 	axios.get((App.BASEURL + App.USERDETAILS).format(username))
 	.then(function(response) {
-		log(response.data);
+		showUserDetails(response.data);
 	})
 	.catch(function(error) {
 		log(error);
 	})
 }
 
+
+// @TODO submitted, threads, favorites to be clickable
+function showUserDetails(obj)
+{
+	var out = 
+		`<tr class="athing"><td valign="top">user:</td><td timestamp="${obj.created}"><a href="user?id=${obj.id}" class="hnuser">${obj.id}</a></td></tr>
+		<tr><td valign="top">created:</td><td><a href="front?day=${moment(moment.unix(obj.created)).format('YYYY-MM-D')}&amp;birth=${obj.id}">${moment(moment.unix(obj.created)).format('MMMM D, YYYY')}</a></td></tr>
+		<tr><td valign="top">karma:</td><td>${obj.karma}</td></tr>
+		<tr><td valign="top">about:</td><td>${obj.about || ''}</td></tr>
+		<tr><td></td><td><a href="#"><u>submissions</u></a></td></tr>
+		<tr><td></td><td><a href="#"><u>comments</u></a></td></tr>
+		<tr><td></td><td><a href="#"><u>favorites</u></a>
+		</td></tr>`;
+	document.getElementById('t_user_details').innerHTML = out;
+}
