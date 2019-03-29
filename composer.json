@@ -36,5 +36,8 @@
             "echo 'Started web server on http://localhost:8888'",
             "php -S localhost:8888 -t web"
         ]
-    }
+    },
+	"config": {
+		"process-timeout": 0
+	}
 }
