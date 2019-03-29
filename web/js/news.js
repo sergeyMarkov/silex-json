@@ -50,6 +50,47 @@ function getStories()
 	return pr;
 }
 
+
+// @TODO hide, ago to be clickable
+function showStories() 
+{
+	var out = '';
+	App.stories.reverse().forEach((el,idx) => {
+		out += 
+		`<tr class='athing' id='${el.id}'>
+				<td align="right" valign="top" class="title"><span class="rank">${idx+1}.</span></td>
+				<td valign="top" class="votelinks">
+					<center>
+						<a id='up_${el.id}' href='vote?id=${el.id}&amp;how=up&amp;goto=news'>
+							<div class='votearrow' title='upvote'></div>
+						</a>
+					</center>
+				</td>
+				<td class="title">
+					<a href="${el.url}" class="storylink">${el.title}</a>
+					<span class="sitebit comhead"> 
+						(<a href="from?site=${el.baseUrl}">
+							<span class="sitestr">${el.baseUrl}</span>
+						</a>)
+					</span>
+				</td>
+				</tr>
+				<tr>
+				<td colspan="2"></td>
+				<td class="subtext">
+					<span class="score" id="score_${el.id}">${el.score} point${el.score>1?'s':''}</span> by 
+					<a href="/index_dev.php/user/${el.by}" class="hnuser">${el.by}</a> 
+					<span class="age"><a href="#">${moment(moment.unix(el.time)).fromNow()}</a></span> 
+					<span id="unv_${el.id}"></span> | 
+						<a href="#">hide</a> | <a href="item?id=19497878">${el.descendants}&nbsp;comments</a>              
+				</td>
+				</tr>
+				<tr class="spacer" style="height:5px"></tr>`	
+;		
+	});
+	document.getElementById('t_stories').innerHTML = out;
+}
+
 function loadStoriesAction() 
 {
 	log('loadStoriesAction');
@@ -58,6 +99,7 @@ function loadStoriesAction()
 		Promise.all(App.storyRequests)
 		.then(function(data) {
 			log(App.stories);
+			showStories();
 		})
 	});
 }
