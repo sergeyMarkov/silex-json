@@ -1,4 +1,4 @@
-log('started');
+App.log('app started');
 
 window.addEventListener("load", function(event) {
 	
@@ -7,11 +7,11 @@ window.addEventListener("load", function(event) {
 	var route = urlParts.segments[1] || 'root';
 	switch(route) {
 		case 'user':
-			userDetailsAction(urlParts.segments[2] || '');
+			App.userDetailsAction(urlParts.segments[2] || '');
 			break;
 		default:
-			log('default route loading..');
-			loadStoriesAction();
+			App.log('default route loading..');
+			App.loadStoriesAction();
 	}
 
 });
