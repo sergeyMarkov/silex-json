@@ -1,0 +1,3 @@
+let App = {
+	debug: true
+}

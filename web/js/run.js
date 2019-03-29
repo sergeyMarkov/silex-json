@@ -1,0 +1,1 @@
+if (App.debug) console.log('started');
