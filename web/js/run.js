@@ -8,6 +8,7 @@ window.addEventListener("load", function(event) {
 	switch(route) {
 		default:
 			log('default route loading..');
+			loadStoriesAction();
 	}
 
 });
